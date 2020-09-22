@@ -1,0 +1,19 @@
+# UDEV Rules for OnlyKey USB board, 
+# 
+# With reference as needed to hardware udev rules at:
+#   http://www.pjrc.com/teensy/49-teensy.rules
+#
+# Place for Ubuntu 20.04 at:
+#   /etc/udev/rules.d/49-onlykey.rules
+# For example, type this command in a terminal:
+#   sudo cp udev/49-onlykey.rules /etc/udev/rules.d/49-onlykey.rules
+#
+# Reload udev rules in a terminal:
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#
+ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="60fc", ENV{ID_MM_DEVICE_IGNORE}="1"
+ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="60fc", ENV{MTP_NO_PROBE}="1"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="60fc", TAG+="systemd", TAG+="uaccess", ENV{SYSTEMD_ALIAS}="/dev/onlykey"
+KERNEL=="ttyACM*", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="60fc", TAG+="uaccess"
+

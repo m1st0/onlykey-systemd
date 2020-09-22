@@ -1,0 +1,18 @@
+; Place in user's systemd location at:
+;   .config/systemd/user/onlykey-attach.service
+; For example, type this command in a terminal:
+;   sudo cp systemd/onlykey-attach.service /home/${USER}/.config/systemd/user/onlykey-attach.service
+;
+; Activate the service as the logged in user:
+;   systemctl --user enable onlykey-attach.service
+;
+
+[Unit]
+Description=Provides user-level OnlyKey app GUI activation upon insertion of USB device
+
+[Service]
+ExecStart=/opt/OnlyKey/nw
+Type=simple
+
+[Install]
+WantedBy=dev-onlykey.device
