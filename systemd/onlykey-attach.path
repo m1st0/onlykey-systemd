@@ -1,0 +1,9 @@
+[Unit]
+Description=Provides monitoring of OnlyKey USB device insertion
+
+[Path]
+PathExists=/dev/onlykey
+Unit=onlykey-attach.service
+
+[Install]
+WantedBy=default.target
